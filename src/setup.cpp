@@ -16,17 +16,6 @@ GAME_STATE gameState = RUNNING;
 bool QUICK_CLEAR = false;
 
 
-KEY getKey() {
-    char c = (char) getch();
-#if defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
-    c = (c == K_ESC) ? (char) getch() : c;
-    c = (c == K_BRAC_OPEN) ? (char) getch() : c;
-#elifdef _WIN32
-    c = (c == -32) ? (char) getch() : c;
-#endif
-    return c;
-}
-
 #if defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
 char getch() {
     char buf = 0;
@@ -47,14 +36,41 @@ char getch() {
         perror("tcsetattr ~ICANON");
     return (buf);
 }
-
-#elifdef _WIN32
-char getInputChar() {
-    char ch = getch();
-    if (ch == -32)
-        ch = getch()
-
-    return ch;
-}
 #endif
 
+KEY getKey() {
+    bool flag = false;
+    char c = (char) getch();
+#if defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
+    c = (c == K_ESC) ? (char) getch() : c;
+    if (c == K_BRAC_OPEN) {
+        flag = true;
+        c = (char)getch();
+    }
+#elif defined(_WIN32)
+    if (c == -32) {
+        flag = true;
+        c = (char)getch();
+    }
+#endif
+    // 箭头键转换为VI键位，防止冲突
+    if (flag) {
+        switch(c) {
+            case K_UP:
+                c = K_K;
+                break;
+            case K_DOWN:
+                c = K_J;
+                break;
+            case K_LEFT:
+                c = K_H;
+                break;
+            case K_RIGHT:
+                c = K_L;
+                break;
+            default:
+                break;
+        }
+    }
+    return c;
+}

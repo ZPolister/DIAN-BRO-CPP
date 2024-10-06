@@ -11,6 +11,11 @@
 #include "sevsegdisp.hpp"
 #include "colour.hpp"
 
+#ifdef _WIN32
+#include <conio.h>
+#endif
+
+
 void clearScreen() {
     std::cout << "\033[2J\033[H";
 }

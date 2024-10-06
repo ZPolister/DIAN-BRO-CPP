@@ -283,28 +283,24 @@ void Field::getMove() {
     switch (k) {
         case K_K:
         case K_k:
-        case K_UP:
             if (y)
                 --y;
             return;
 
         case K_J:
         case K_j:
-        case K_DOWN:
             if (y != b - 1)
                 ++y;
             return;
 
         case K_H:
         case K_h:
-        case K_LEFT:
             if (x)
                 --x;
             return;
 
         case K_L:
         case K_l:
-        case K_RIGHT:
             if (x != l - 1)
                 ++x;
             return;

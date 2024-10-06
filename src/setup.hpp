@@ -84,7 +84,7 @@ enum KEYS
 };
 
 
-#elifdef _WIN32
+#elif defined(_WIN32)
 enum KEYS
 {
 	K_UP = (char)72,
