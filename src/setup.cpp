@@ -9,6 +9,8 @@ GAME_STATE gameState = RUNNING;
 bool QUICK_CLEAR = false;
 
 
+
+#if defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
 char getch() {
     char buf = 0;
     termios old = {0};
@@ -28,6 +30,7 @@ char getch() {
         perror("tcsetattr ~ICANON");
     return (buf);
 }
+#endif
 
 KEY getKey() {
     char c = (char) getch();
@@ -35,3 +38,4 @@ KEY getKey() {
     c = (c == K_BRAC_OPEN) ? (char) getch() : c;
     return c;
 }
+
