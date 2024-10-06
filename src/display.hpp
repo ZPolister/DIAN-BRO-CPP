@@ -3,6 +3,8 @@
 // 清屏
 extern void clearScreen();
 
+extern void maximizeConsole();
+
 // 显示Banner图
 extern void displayBanner();
 // 显示标志控制位

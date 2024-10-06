@@ -13,8 +13,17 @@
 
 #ifdef _WIN32
 #include <conio.h>
+#include <windows.h>
 #endif
 
+void maximizeConsole() {
+#ifdef _WIN32
+    keybd_event(VK_F11, 0, 0, 0);
+    keybd_event(VK_F11,0, KEYEVENTF_KEYUP,0);
+#else
+    std::system("printf '\\e[8;40;100t'");  // 根据需要设置行数和列数
+#endif
+}
 
 void clearScreen() {
     std::cout << "\033[2J\033[H";
