@@ -4,11 +4,28 @@
 
 #include "setup.hpp"
 
+#ifdef _WIN32
+#include <conio.h>
+#elif defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
+#include <termios.h>
+#include <unistd.h>
+#endif
+
 GAME_MODE gameMode;
 GAME_STATE gameState = RUNNING;
 bool QUICK_CLEAR = false;
 
 
+KEY getKey() {
+    char c = (char) getch();
+#if defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
+    c = (c == K_ESC) ? (char) getch() : c;
+    c = (c == K_BRAC_OPEN) ? (char) getch() : c;
+#elifdef _WIN32
+    c = (c == -32) ? (char) getch() : c;
+#endif
+    return c;
+}
 
 #if defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
 char getch() {
@@ -30,12 +47,14 @@ char getch() {
         perror("tcsetattr ~ICANON");
     return (buf);
 }
-#endif
 
-KEY getKey() {
-    char c = (char) getch();
-    c = (c == K_ESC) ? (char) getch() : c;
-    c = (c == K_BRAC_OPEN) ? (char) getch() : c;
-    return c;
+#elifdef _WIN32
+char getInputChar() {
+    char ch = getch();
+    if (ch == -32)
+        ch = getch()
+
+    return ch;
 }
+#endif
 
