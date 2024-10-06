@@ -17,10 +17,10 @@ int main()
     getQuickClearSettings();
 
     Field field;
-
+    saveLocation();
     while (true)
     {
-        clearScreen();
+        clearSiteToEnd();
 
         displayBanner();
         field.drawField();

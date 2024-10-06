@@ -58,6 +58,7 @@ void Buffer::clear()
 {
     std::vector<std::string> t(size, "");
     buf = t;
+
 }
 
 Buffer writeBuffer;

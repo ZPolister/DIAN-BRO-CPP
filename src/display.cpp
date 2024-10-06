@@ -152,3 +152,16 @@ void getQuickClearSettings() {
     } while (!(ch == 'y' || ch == 'n'));
 }
 
+void saveLocation() {
+    printf("\033[s");
+}
+
+void backLocation() {
+    printf("\033[u");
+}
+
+void clearSiteToEnd() {
+    printf("\033[K");
+    backLocation();
+}
+
