@@ -13,6 +13,7 @@ int main()
     system("chcp 65001");
 #endif
     maximizeConsole();
+    hideCursor();
     clearScreen();
     setGameMode();
     getQuickClearSettings();

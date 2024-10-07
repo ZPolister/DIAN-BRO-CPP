@@ -23,3 +23,5 @@ extern void saveLocation();
 extern void backLocation();
 
 extern void clearSiteToEnd();
+
+extern void hideCursor();

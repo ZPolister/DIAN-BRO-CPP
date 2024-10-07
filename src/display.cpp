@@ -21,7 +21,7 @@ void maximizeConsole() {
     keybd_event(VK_F11, 0, 0, 0);
     keybd_event(VK_F11,0, KEYEVENTF_KEYUP,0);
 #else
-    std::system("printf '\\e[8;40;100t'");  // 根据需要设置行数和列数
+    printf("\e[8;100;600t");  // 根据需要设置行数和列数
 #endif
 }
 
@@ -113,12 +113,12 @@ void setGameMode() {
         std::cout << std::setw(30);
         std::cout << blue_fg << "4. Custom\n\n";
         std::cout << "                       ";
-        std::cin >> ch;
+        ch = getch() - '0';
+
 
         if (ch < 1 || ch > 4)
         {
             std::cout << red_fg << "Invalid Choice. Try again\n";
-            auto c = getch();
         }
         else
             gameMode = (GAME_MODE)ch;
@@ -172,5 +172,9 @@ void backLocation() {
 void clearSiteToEnd() {
     printf("\033[K");
     backLocation();
+}
+
+void hideCursor() {
+    printf("\033[?25l");
 }
 
