@@ -3,7 +3,7 @@ project(DIAN_BRO_CPP)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(DIAN_PRO_CPP src/main.cpp
+add_executable(DIAN_BRO_CPP src/main.cpp
         src/setup.hpp
         src/buffer.cpp
         src/cell.cpp
