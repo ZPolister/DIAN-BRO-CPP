@@ -176,7 +176,6 @@ void backLocation() {
 
 void clearSiteToEnd() {
     printf("\033[K");
-    backLocation();
 }
 
 void hideCursor() {
