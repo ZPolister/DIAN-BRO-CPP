@@ -16,7 +16,7 @@ void SevSegDisp::set(int n){
     number = n;
 }
 
-void SevSegDisp::update(const std::string& prepend){
+void SevSegDisp::update(const std::string& prepend) const {
     int homeLine = writeBuffer.getCurrLine();
     int nos[noOfDigits];
     int num = number;

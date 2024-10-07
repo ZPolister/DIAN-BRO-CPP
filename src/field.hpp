@@ -1,11 +1,13 @@
 #pragma once
 
-#include <utility>
 #include <vector>
 #include "cell.hpp"
 
 using GRID = std::vector<std::vector<Cell>>;
 
+/**
+ * 棋盘类，显示控制游戏棋盘
+ */
 class Field
 {
   public:

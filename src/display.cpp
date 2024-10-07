@@ -91,6 +91,11 @@ void displayVictoryOrDefeat() {
         writeBuffer << col << R"(  | |_| (_) \__ \ _||_|)" << endl;
         writeBuffer << col << R"(  |____\___/|___/___(_))" << endl;
     }
+
+    // 防止Windows小黑窗直接退出
+#ifdef _WIN32
+    getch();
+#endif
 }
 
 void setGameMode() {

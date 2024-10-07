@@ -2,8 +2,11 @@
 
 #include <string>
 
+/// 键盘控制以及操作信息类
+///
+///
 
-
+/// 游戏模式
 enum GAME_MODE
 {
 	BEGINNER = 1,
@@ -12,8 +15,10 @@ enum GAME_MODE
 	CUSTOM
 };
 
+/// 当前游戏模式（全局变量）
 extern GAME_MODE gameMode;
 
+/// 游戏状态枚举（胜利，失败，进行中），用于显示状态
 enum GAME_STATE
 {
 	VICTORY,
@@ -21,10 +26,13 @@ enum GAME_STATE
 	RUNNING
 };
 
+/// 当前游戏状态（全局变量）
 extern GAME_STATE gameState;
 
+/// 是否快速清除模式（全局变量）
 extern bool QUICK_CLEAR;
 
+/// 单元格格式
 enum POSOF_CELL
 {
 	CENTRE,
@@ -32,6 +40,7 @@ enum POSOF_CELL
 	CORNER
 };
 
+/// x轴下移动方位
 enum DIR_X
 {
 	NULL_DIR_X = 0,
@@ -39,6 +48,7 @@ enum DIR_X
 	RIGHT = 1
 };
 
+/// y轴下移动方位
 enum DIR_Y
 {
 	NULL_DIR_Y = 0,
@@ -49,6 +59,8 @@ enum DIR_Y
 const std::string endl = "\n";
 using KEY = char;
 
+
+/// VI键位枚举
 enum VI_KEYS
 {
 	K_K = 75,
@@ -67,6 +79,7 @@ enum VI_KEYS
  */
 extern KEY getKey();
 
+/// UNIX下的键位枚举，以及getch的定义（unix下没有函数，自己用串口通讯写一个）
 #if defined(__unix__) || defined(__APPLE__) && defined(__MACH__)
 extern char getch();
 enum KEYS
@@ -83,7 +96,7 @@ enum KEYS
 	K_SPACE = ' '
 };
 
-
+/// Windows下的键位定义
 #elif defined(_WIN32)
 enum KEYS
 {
